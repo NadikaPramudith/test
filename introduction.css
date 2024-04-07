@@ -1,0 +1,250 @@
+
+/* ===== Global ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    
+}
+#popupContainer {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+ul {
+    list-style: none;
+}
+.active {
+    color: green;
+    text-decoration: underline;
+    font-weight: bold;
+}
+body , html {
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    color: whitesmoke;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+.nav-links li {
+    margin: 0 30px;
+}
+
+header {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(img/introheader.jpg);
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.header-content {
+    margin-bottom: 150px;
+    color: whitesmoke;
+    text-align: center;
+}
+.header-content h2 {
+    font-size: 4vmin;
+}
+.line {
+    width: 150px;
+    height: 4px;
+    background: green;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+.header-content h1 {
+    font-size: 7vmin;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.ctn {
+    padding: 8px 15px;
+    background: green;
+    border-radius: 30px;
+    color: whitesmoke;
+}
+.menu-btn,.close-btn{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+/*Content*/
+
+.img-4 {max-width: 420px;
+    float: left;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-top: -60px;
+}
+
+.wrapper {
+    margin: 150px auto;
+    width: 70%;
+}
+
+.text-box {
+    color: rgb(0, 0, 0);
+}
+
+.text-box h2 {
+    font-size: 42px;
+}
+
+.text-box p {
+    font-size: 16px;
+}
+
+/*Table*/
+
+.table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 200px;
+}
+
+.table td,.table th {
+    padding: 12px 15px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 16px;
+}
+
+.table th {
+    background-color: #00300c;
+    color: whitesmoke;
+}
+
+.table tbody tr:nth-child(even){
+    background-color: #f5f5f5;
+}
+
+.footer {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 80px;
+    margin: 0;
+    background: #00300c;
+    text-align: center;
+}
+.footer p {
+    color: whitesmoke;
+    margin: 20px auto;
+}
+
+/* Mobile device */
+@media only screen and (max-width:850px){
+    .menu-btn {
+        display: block;
+    }
+    .navbar {
+        padding: 0;
+    }
+    .logo {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        background: #00300c;
+        margin-top: -900px;
+        transition: all 0.5s ease;
+    }
+    .mobile-menu {
+        margin-top: 0px;
+        border-bottom-right-radius: 30%;
+    }
+    .nav-links li {
+        margin: 30px auto;
+    }
+
+    /*Table*/
+
+    .table thread {
+        display: none;
+    }
+    
+    .table,.table tbody,.table tr,.table td {
+        display: block;
+        width: 100%;
+        justify-content: space-between;
+    
+    }
+    
+    .table tr {
+        margin-bottom: 15px;
+    }
+    
+    table td {
+        text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+    }
+    
+    .table td::before {
+        content: attr(data-lable);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+    
+    .footer {
+        padding: 10px;
+    }
+}
+
+/* Animations */
+img {
+    transition: transform .3s ease;
+}
+img:hover {
+    transform: scale(1.1);
+}
+.ctn:hover {
+    background: whitesmoke;
+    color: green;
+    box-shadow: 2px 2px 5px #00000056;
+}
+li:hover {
+    color: green;
+    cursor: pointer;
+}

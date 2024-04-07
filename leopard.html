@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Ventures</title>
+    <!-- ==== CSS ==== -->
+    <link rel="stylesheet" href="leopard.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <!--googlefonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Jungle Ventures</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="home.html">Home</a></li>
+            <li><a href="introduction.html">Introduction</a></li>
+            <li><a href="D.O.W.C.html">D.O.W.C</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="leopard.html">Sri lankan Leopard</a></li>
+            <li><a href="yala.html">Yala National Park</a></li>
+            <li><a href="wilpattu.html">Wilpattu National Park</a></li>
+        </ul>
+        <div class="mobile-nav">
+            <img src="img/menu-btn.png" alt="" class="menu-btn">
+            <h1 class="close-btn">X</h1>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>Sri Lankan Leopard </h1>
+        </div>
+    </header>
+    <main>
+        <div x-data="leopardData">
+            <section class="wrapper">
+                <img :src="img1" class="img-2">
+                <div class="text-box">
+                    <h2 x-text="heading"></h2><br>
+                    <p x-text="paragraph1"></p><br>
+                    <p x-text="paragraph2"></p>
+                    <br>
+                    <p x-text="paragraph3"></p><br>
+                    <h3 x-text="subheading"></h3><br>
+                    <p>
+                        <li>Yala National Park</li><br>
+                        <li>Wilpattu National Park:</li><br>
+                        <li>Udawalawe National Park</li><br>
+                        <li>Horton Plains National Park</li><br>
+                        <li>Sinharaja Forest Reserve</li><br>
+                    </p>
+                </div>
+            </section>
+            <section class="wrapper">
+                <img :src="img2" class="img-3">
+                <div class="text-box">
+                    <h2 x-text="subheading1"></h2><br>
+                    <p>
+                    <ol>
+                        <li>
+                            <h3 x-text="subheading2"></h3>
+                        </li><br>
+                        <p x-text="subpara1"></p><br>
+                        <li>
+                            <h3 x-text="subheading3"></h3>
+                        </li><br>
+                        <p x-text="subpara2"></p><br>
+                        <li>
+                            <h3 x-text="subheading4"></h3>
+                        </li><br>
+                        <p x-text="subpara3"></p><br>
+                        <li>
+                            <h3 x-text="subheading5"></h3>
+                        </li><br>
+                        <p x-text="subpara4"></p><br>
+                    </ol>
+                    </p>
+                </div>
+            </section>
+            <section class="wrapper">
+                <div class="text-box">
+                    <h2 x-text="subheading6"></h2><br>
+                    <p>
+                    <ol>
+                        <li>
+                            <h3 x-text="subheading7"></h3>
+                        </li><br>
+                        <p x-text="subpara5"></p><br>
+                        <li>
+                            <h3 x-text="subheading8"></h3>
+                        </li><br>
+                        <p x-text="subpara6"></p><br>
+                        <li>
+                            <h3 x-text="subheading9"></h3>
+                        </li><br>
+                        <p x-text="subpara7"></p>
+                        <br>
+                    </ol>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <section class="footer">
+        <p>Discover the wonders of the wild with our wildlife tour website, where every adventure is a journey into the
+            heart of nature, offering unforgettable experiences and a deep appreciation for the diverse and magnificent
+            creatures that inhabit Sri Lanka.</p><br>
+        <p>
+        <h2>Contact us</h2>
+        </p>
+        <p>Colombo 7,western province,Sri Lanka | Phone: 081-1234567 | Email: Nadikabambarenda@gmail.com</p><br>
+        <p>Copyright © 2024 Jungle Ventures</p>
+    </section>
+
+    <script>
+        const mobileNav = document.querySelector('.mobile-nav')
+        const menuBtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        const closeBtn = document.querySelector('.close-btn')
+
+        mobileNav.addEventListener('click', (e) => {
+            navlinks.classList.toggle('mobile-menu')
+            if (e.target === menuBtn) {
+                menuBtn.replaceWith(closeBtn)
+                closeBtn.style.display = 'block'
+            }
+            if (e.target === closeBtn) {
+                closeBtn.replaceWith(menuBtn)
+            }
+        })
+        const leopardData = {
+            heading: '',
+            paragraph1: '',
+            paragraph2: '',
+            paragraph3: '',
+            subheading: '',
+            subheading1: '',
+            subheading2: '',
+            subpara1: '',
+            subheading3: '',
+            subpara2: '',
+            subheading4: '',
+            subpara3: '',
+            subheading5: '',
+            subpara4: '',
+            subheading6: '',
+            subheading7: '',
+            subpara5: '',
+            subheading8: '',
+            subpara6: '',
+            subheading9: '',
+            subpara7: '',
+            img1: '',
+            img2: '',
+        };
+
+        fetch('leopard.json')
+            .then(response => response.json())
+            .then(data => {
+                leopardData.heading = data.heading;
+                leopardData.paragraph1 = data.paragraph1;
+                leopardData.paragraph2 = data.paragraph2;
+                leopardData.paragraph3 = data.paragraph3;
+                leopardData.subheading = data.subheading;
+                leopardData.subheading1 = data.subheading1;
+                leopardData.subheading2 = data.subheading2;
+                leopardData.subpara1 = data.subpara1;
+                leopardData.subheading3 = data.subheading3;
+                leopardData.subpara2 = data.subpara2;
+                leopardData.subheading4 = data.subheading4;
+                leopardData.subpara3 = data.subpara3;
+                leopardData.subheading5 = data.subheading5;
+                leopardData.subpara4 = data.subpara4;
+                leopardData.subheading6 = data.subheading6;
+                leopardData.subheading7 = data.subheading7;
+                leopardData.subpara5 = data.subpara5;
+                leopardData.subheading8 = data.subheading8;
+                leopardData.subpara6 = data.subpara6;
+                leopardData.subheading9 = data.subheading9;
+                leopardData.subpara7 = data.subpara7;
+                leopardData.img1 = data.img1;
+                leopardData.img2 = data.img2;
+
+                
+                
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+
+</html>

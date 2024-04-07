@@ -1,0 +1,52 @@
+{
+    "name": "Jungle Ventures",
+    "short_name": "JungleVentures",
+    "start_url": "/home.html",
+    "display": "standalone",
+    "background_color": "#00300c",
+    "theme_color": "#00300c",
+    "orientation": "portrait-primary",
+    "icons": [
+        
+
+    
+
+        {
+            "src":"./img/216.png",
+            "type": "image/png",
+            "sizes": "216x216"
+
+        },
+
+        {
+            "src":"./img/256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+
+        },
+
+        {
+            "src":"./img/512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+
+        },
+
+        {
+            "src":"./img/1024.png",
+            "type": "image/png",
+            "sizes": "1024x1024"
+
+        },
+        
+        {
+            "src": "./img/maskable_icon.png",
+            "sizes": "196x196",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+
+    ]
+
+
+}

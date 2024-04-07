@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Ventures</title>
+    <!-- ==== CSS ==== -->
+    <link rel="stylesheet" href="wilpattu.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <!--googlefonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Jungle Ventures</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="home.html">Home</a></li>
+            <li><a href="introduction.html">Introduction</a></li>
+            <li><a href="D.O.W.C.html">D.O.W.C</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="leopard.html">Sri lankan Leopard</a></li>
+            <li><a href="yala.html">Yala National Park</a></li>
+            <li><a href="wilpattu.html">Wilpattu National Park</a></li>
+        </ul>
+        <div class="mobile-nav">
+            <img src="img/menu-btn.png" alt="" class="menu-btn">
+            <h1 class="close-btn">X</h1>
+        </div>
+    </nav>
+    <main>
+        <div x-data="wilpattuData">
+            <section class="wilpattu">
+                <div class="wilpattu-content">
+                    <h1 class="animated-text">Wilpattu National Park</h1>
+                    <div class="line"></div>
+                    <p x-text="animatedpara">
+                    <h4 class="animated-text"></h4>
+                    </p>
+                </div>
+            </section>
+            <section class="wrapper">
+                <img :src="img1" class="img-5">
+                <div class="text-box">
+                    <h2 x-text="subheading"></h2><br>
+                    <br>
+                    <p x-text="paragraph1"></p>
+                </div>
+            </section>
+            <section class="wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252576.31067086622!2d79.8719359344911!3d8.450184973505245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdac7787e4bc27%3A0xcdd9a0715dad187c!2z4LeA4LeS4La94LeK4La04Lat4LeK4Lat4LeUIOC2ouC3j-C2reC3kuC2miDgt4DgtrHgt53gtq_gt4rigI3gtrrgt4_gtrHgtro!5e0!3m2!1ssi!2slk!4v1705636818902!5m2!1ssi!2slk"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+                <div class="text-box">
+                    <h2 x-text="subheading2"></h2><br>
+                    <br>
+                    <p x-text="paragraph2"></p><br>
+                    <p>
+                    <h3 x-text="subheading3"></h3>
+                    </p><br>
+                    <p>
+                    <ol>
+                        <li>Mugger Crocodile </li>
+                        <li>Barred Buttonquail </li>
+                        <li>Sri Lanka Junglefowl </li>
+                        <li>Green Bee-eater</li>
+                    </ol>
+                    </p>
+                </div>
+            </section>
+        </main>
+        </div>
+    <section class="footer">
+        <p>Discover the wonders of the wild with our wildlife tour website, where every adventure is a journey into the
+            heart of nature, offering unforgettable experiences and a deep appreciation for the diverse and magnificent
+            creatures that inhabit Sri Lanka.</p><br>
+        <p>
+        <h2>Contact us</h2>
+        </p>
+        <p>Colombo 7,western province,Sri Lanka | Phone: 081-1234567 | Email: Nadikabambarenda@gmail.com</p><br>
+        <p>Copyright © 2024 Jungle Ventures</p>
+    </section>
+
+    <script>
+        const mobileNav = document.querySelector('.mobile-nav')
+        const menuBtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        const closeBtn = document.querySelector('.close-btn')
+
+        mobileNav.addEventListener('click', (e) => {
+            navlinks.classList.toggle('mobile-menu')
+            if (e.target === menuBtn) {
+                menuBtn.replaceWith(closeBtn)
+                closeBtn.style.display = 'block'
+            }
+            if (e.target === closeBtn) {
+                closeBtn.replaceWith(menuBtn)
+            }
+        })
+        const wilpattuData = {
+            animatedpara: '',
+            subheading: '',
+            paragraph1: '',
+            subheading2: '',
+            paragraph2: '',
+            subheading3: '',
+            img1: '',
+        };
+
+        fetch('wilpattu.json')
+            .then(response => response.json())
+            .then(data => {
+                wilpattuData.animatedpara = data.animatedpara;
+                wilpattuData.subheading = data.subheading;
+                wilpattuData.paragraph1 = data.paragraph1;
+                wilpattuData.subheading2 = data.subheading2;
+                wilpattuData.paragraph2 = data.paragraph2;
+                wilpattuData.subheading3 = data.subheading3;
+                wilpattuData.img1 = data.img1;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+
+</html>

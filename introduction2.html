@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Ventures</title>
+    <!-- ==== CSS ==== -->
+    <link rel="stylesheet" href="introduction.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <!--googlefonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Jungle Ventures</h1>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="introduction.html">Introduction</a></li>
+            <li><a href="D.O.W.C.html">D.O.W.C</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="leopard.html">Sri lankan Leopard</a></li>
+            <li><a href="yala.html">Yala National Park</a></li>
+            <li><a href="wilpattu.html">Wilpattu National Park</a></li>
+        </ul>
+        <div class="mobile-nav">
+            <img src="img/menu-btn.png" alt="" class="menu-btn">
+            <h1 class="close-btn">X</h1>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>Introduction </h1>
+        </div>
+    </header>
+
+    <div x-data="introductionData">
+        <section class="wrapper">
+            <img :src="introimg" class="img-4">
+            <div class="text-box">
+                <h2 x-text="heading"></h2><br>
+                <!-- Display paragraph1 content -->
+                <p id="paragraph1" class="editable" x-text="paragraph1"></p>
+                <!-- Edit button -->
+                <button @click="openPopup('paragraph1')">Edit</button>
+                <!-- Save button -->
+                <button x-show="loggedIn && editMode" @click="saveContent">Save</button><br>
+                <p>
+                    <ol>
+                        <li>
+                            <h3 x-text="subheading1"></h3>
+                            <p id="paragraph2" class="editable" x-text="paragraph2"></p>
+                            <!-- Edit button -->
+                            <button @click="openPopup('paragraph2')">Edit</button>
+                            <!-- Save button -->
+                            <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                        </li><br>
+                        <li>
+                            <h3 x-text="subheading2"></h3>
+                            <p id="paragraph3" class="editable" x-text="paragraph3"></p>
+                            <!-- Edit button -->
+                            <button @click="openPopup('paragraph3')">Edit</button>
+                            <!-- Save button -->
+                            <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                        </li><br>
+                        <li>
+                            <h3 x-text="subheading3"></h3>
+                            <p id="paragraph4" class="editable" x-text="paragraph4"></p>
+                            <!-- Edit button -->
+                            <button @click="openPopup('paragraph4')">Edit</button>
+                            <!-- Save button -->
+                            <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                        </li><br>
+                        <li>
+                            <h3 x-text="subheading4"></h3>
+                            <p id="paragraph5" class="editable" x-text="paragraph5"></p>
+                            <!-- Edit button -->
+                            <button @click="openPopup('paragraph5')">Edit</button>
+                            <!-- Save button -->
+                            <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                        </li>
+                    </ol>                    
+                </p>
+            </div>
+        </section>
+
+        <table class="table">
+            <thread>
+                <th>Location</th>
+                <th>Species</th>
+                <th>Facts</th>
+            </thread>
+            <tbody>
+                <tr>
+                    <td data-lable="Location">Yala National Park </td>
+                    <td data-lable="Species">Sri Lankan Leopard </td>
+                    <td data-lable="Facts">Has adapted to a variety of habitats, including arid regions</td>
+                </tr>
+                <tr>
+                    <td data-lable="Location">Horton Plains National Park </td>
+                    <td data-lable="Species">Sri Lanka Junglefowl </td>
+                    <td data-lable="Facts">Male displays vibrant colors during courtship</td>
+                </tr>
+                <tr>
+                    <td data-lable="Location">Minneriya and Kaudulla </td>
+                    <td data-lable="Species">Sri Lankan Elephant </td>
+                    <td data-lable="Facts">Engages in spectacular group gatherings known as the "Elephant Gathering"</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+    <!--Footer-->
+    <section class="footer">
+        <p>Discover the wonders of the wild with our wildlife tour website, where every adventure is a journey into the
+            heart of nature, offering unforgettable experiences and a deep appreciation for the diverse and magnificent
+            creatures that inhabit Sri Lanka.</p><br>
+        <p>
+        <h2>Contact us</h2>
+        </p>
+        <p>Colombo 7,western province,Sri Lanka | Phone: 081-1234567 | Email: Nadikabambarenda@gmail.com</p><br>
+        <p>Copyright © 2024 Jungle Ventures</p>
+    </section>
+
+    <!--Popup Container-->
+    <div id="popupContainer">
+        <h2>Edit Text</h2>
+        <textarea id="textContent" rows="10" cols="50"></textarea>
+        <button onclick="saveText()">Save</button>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <!--Java script used for the hamburger menu in mobile view-->
+    <script>
+        const mobileNav = document.querySelector('.mobile-nav')
+        const menuBtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        const closeBtn = document.querySelector('.close-btn')
+
+        mobileNav.addEventListener('click', (e) => {
+            navlinks.classList.toggle('mobile-menu')
+            if (e.target === menuBtn) {
+                menuBtn.replaceWith(closeBtn)
+                closeBtn.style.display = 'block'
+            }
+            if (e.target === closeBtn) {
+                closeBtn.replaceWith(menuBtn)
+            }
+        })
+
+        const introductionData = {
+            heading: '',
+            paragraph1: '',
+            subheading1: '',
+            paragraph2: '',
+            subheading2: '',
+            paragraph3: '',
+            subheading3: '',
+            paragraph4: '',
+            subheading4: '',
+            paragraph5: '',
+            introimg: '',
+            loggedIn: false,
+            editMode: false,
+
+            logout() {
+                localStorage.setItem('loggedIn', false);
+                window.location.href = 'introduction.html';
+            },
+
+            login() {
+                this.loggedIn = true;
+
+            },
+
+            loadContent() {
+                const storedData = localStorage.getItem('introductionData');
+                if (storedData) {
+                    Object.assign(this, JSON.parse(storedData));
+                } else {
+                    fetch('introduction.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            Object.assign(this, data);
+                            localStorage.setItem('introductionData', JSON.stringify(data));
+                        })
+                        .catch(error => console.error('Error fetching data:', error));
+                }
+            },
+
+            saveContent() {
+                localStorage.setItem('introductionData', JSON.stringify(this));
+                this.editMode = false; // Exit edit mode after saving
+            }
+        };
+
+        introductionData.loadContent();
+
+        function openPopup(paragraphId) {
+            const popupContainer = document.getElementById("popupContainer");
+            popupContainer.style.display = "block";
+            const paragraphContent = document.getElementById(paragraphId).innerText;
+            document.getElementById("textContent").value = paragraphContent;
+            // Store the ID of the paragraph being edited
+            popupContainer.dataset.paragraphId = paragraphId;
+        }
+
+        function closePopup() {
+            document.getElementById("popupContainer").style.display = "none";
+        }
+
+        function saveText() {
+            const popupContainer = document.getElementById("popupContainer");
+            const paragraphId = popupContainer.dataset.paragraphId;
+            const editedText = document.getElementById("textContent").value;
+            introductionData[paragraphId] = editedText;
+            localStorage.setItem('introductionData', JSON.stringify(introductionData));
+            document.getElementById(paragraphId).innerText = editedText;
+            closePopup();
+        }
+    </script>
+</body>
+
+</html>

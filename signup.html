@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="login.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body>
+    <div class="signup-box">
+        <h1>Sign Up</h1>
+        <h4>It's free and only takes a minute</h4>
+        <div x-data="{ users: [], firstName: '', lastName: '', email: '', password: '', confirmPassword: '', subscribeToNewsletter: false}">
+        <form @submit.prevent="registerUser">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" x-model="firstName" required>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" x-model="lastName" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" x-model="email" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" x-model="password" required>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" x-model="confirmPassword" required>
+            <label for="subscribeToNewsletter">Subscribe to Newsletter</label>
+            <input type="checkbox" id="subscribeToNewsletter" x-model="subscribeToNewsletter">
+            <button type="submit">Register</button>
+        </form>
+        </div>
+        <p>
+            By clicking the Sign Up button, you agree to our <br />
+            <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+        </p>
+    </div>
+    <p class="para-2">
+        Already have an account? <a href="login.html">Login here</a>
+    </p>
+
+    <script>
+        function registerUser() {
+            const firstName = this.firstName.trim();
+            const lastName = this.lastName.trim();
+            const email = this.email.trim();
+            const password = this.password.trim();
+            const confirmPassword = this.confirmPassword.trim();
+            const subscribeToNewsletter = this.subscribeToNewsletter;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+
+            const fullName = firstName + ' ' + lastName;
+
+            const newUser = {
+                fullName: fullName,
+                email: email,
+                password: password,
+                subscribeToNewsletter: subscribeToNewsletter
+            };
+
+            // Retrieve existing users from local storage
+            const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Add the new user to the array
+            storedUsers.push(newUser);
+
+            // Store the updated array back to local storage
+            localStorage.setItem('users', JSON.stringify(storedUsers));
+
+            // Optionally, you can redirect the user to the login page after registration
+            //window.location.href = 'login.html';
+        }
+
+        Alpine.data('registerUser', registerUser);
+    </script>
+</body>
+
+</html>

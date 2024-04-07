@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Ventures</title>
+    <!-- ==== CSS ==== -->
+    <link rel="stylesheet" href="home.css">
+    <!-- Alpine.js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Jungle Ventures</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="home.html">Home</a></li>
+            <li><a href="introduction.html">Introduction</a></li>
+            <li><a href="D.O.W.C.html">D.O.W.C</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="leopard.html">Sri lankan Leopard</a></li>
+            <li><a href="yala.html">Yala National Park</a></li>
+            <li><a href="wilpattu.html">Wilpattu National Park</a></li>
+            <li><template x-if="loggedIn"><button @click="logout">Logout</button></template></li>
+            <li><button><a href="login.html">Login</a></button></li>
+        </ul>
+        <div class="mobile-nav">
+            <img src="img/menu-btn.png" alt="" class="menu-btn">
+            <h1 class="close-btn">X</h1>
+        </div>
+    </nav>
+    <header>
+        <div class="header-content">
+            <h2>Explore The Beauty Of Nature</h2>
+            <div class="line"></div>
+            <h1>Join The Adventure</h1>
+            <a href="introduction.html" class="ctn">Learn More</a>
+        </div>
+    </header>
+
+    <!-- == Events == -->
+    <div x-data="homeData" x-init="loadContent">
+        <section class="events">
+            <div class="title">
+                <!-- Display paragraph1 content -->
+                <h4>
+                    <p id="paragraph1" class="editable" x-text="paragraph1"></p>
+                </h4>
+                <!-- Edit button -->
+                <button @click="openPopup('paragraph1')">Edit</button>
+                <!-- Save button -->
+                <button x-show="checkLoggedIn && editMode" @click="saveContent">Save</button>
+                <div class="line"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Display subheading1 and subparagraph1 -->
+                    <img :src="placesimage" alt="places to visit">
+                    <h4 x-text="subheading1"></h4>
+                    <p id="subparagraph1" class="editable" x-text="subparagraph1" @click="openPopup('subparagraph1')">
+                    </p><br>
+                    <button @click="openPopup('subparagraph1')">Edit</button>
+                    <!-- Save button -->
+                    <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                </div>
+
+                <div class="col">
+                    <!-- Display subheading2 and subparagraph2 -->
+                    <img :src="wildreserveimage" alt="wildreserve">
+                    <h4 x-text="subheading2"></h4>
+                    <p id="subparagraph2" class="editable" x-text="subparagraph2" @click="openPopup('subparagraph2')">
+                    </p><br>
+                    <button @click="openPopup('subparagraph2')">Edit</button>
+                    <!-- Save button -->
+                    <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                </div>
+            </div>
+            <section class="services">
+                <br>
+                <!-- Display service and serviceparagraph -->
+                <h4 x-text="service"></h4><br>
+                <p id="serviceparagraph" class="editable" x-text="serviceparagraph" @click="openPopup('serviceparagraph')"></p><br>
+                <button @click="openPopup('serviceparagraph')">Edit</button>
+                <!-- Save button -->
+                <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                <br>
+                <p>
+                    <li>Photography Tours</li><br>
+                    <li>Conservation-focused Experiences</li><br>
+                    <li>Luxury Accommodations</li><br>
+                    <li>Birdwatching Expeditions</li><br>
+                </p>
+                <br>
+                <p id="serviceparagraph2" class="editable" x-text="serviceparagraph2" @click="openPopup('serviceparagraph2')"></p><br>
+                <button @click="openPopup('serviceparagraph2')">Edit</button>
+                <!-- Save button -->
+                <button x-show="loggedIn && editMode" @click="saveContent">Save</button>
+                <p>
+                <ol>
+                    <li>Yala National Park</li><br>
+                    <li>Wilpattu National Park</li><br>
+                    <li>Sinharaja Forest Reserve</li><br>
+                    <li>Udawalawe National Park</li><br>
+                </ol>
+                </p>
+            </section>
+
+        </section>
+    </div>
+
+    <!--Popup Container-->
+    <div id="popupContainer">
+        <h2>Edit Text</h2>
+        <textarea id="textContent" rows="10" cols="50"></textarea>
+        <button onclick="saveText()">Save</button>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <!--Footer-->
+    <section class="footer">
+        <!-- Existing footer content -->
+        <p>Discover the wonders of the wild with our wildlife tour website, where every adventure is a journey into the
+            heart of nature, offering unforgettable experiences and a deep appreciation for the diverse and magnificent
+            creatures that inhabit Sri Lanka.</p><br>
+        <p>
+        <h2>Contact us</h2>
+        </p>
+        <p>Colombo 7,western province,Sri Lanka | Phone: 081-1234567 | Email: Nadikabambarenda@gmail.com</p><br>
+        <p>Copyright © 2024 Jungle Ventures</p>
+
+
+        <!-- Button to toggle subscription status -->
+        <button @click="toggleSubscription">Toggle Subscription</button>
+    </section>
+
+    <!--Java script used for the hamburger menu in mobile view-->
+    <script>
+        const mobileNav = document.querySelector('.mobile-nav')
+        const menuBtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        const closeBtn = document.querySelector('.close-btn')
+
+        mobileNav.addEventListener('click', (e) => {
+            navlinks.classList.toggle('mobile-menu')
+            if (e.target === menuBtn) {
+                menuBtn.replaceWith(closeBtn)
+                closeBtn.style.display = 'block'
+            }
+            if (e.target === closeBtn) {
+                closeBtn.replaceWith(menuBtn)
+            }
+        });
+
+        const homeData = {
+            paragraph1: '',
+            subheading1: '',
+            subheading2: '',
+            subparagraph1: '',
+            subparagraph2: '',
+            serviceparagraph: '',
+            serviceparagraph2: '',
+            service: '',
+            events: '',
+            placesimage: '',
+            wildreserveimage: '',
+            loggedIn: false,
+            editMode: false,
+
+            logout() {
+                localStorage.setItem('loggedIn', false);
+                window.location.href = 'home.html';
+            },
+
+            login() {
+                this.loggedIn = true;
+
+            },
+
+            loadContent() {
+                const storedData = localStorage.getItem('homeData');
+                if (storedData) {
+                    Object.assign(this, JSON.parse(storedData));
+                    const loggedIn = localStorage.getItem('loggedIn');
+                    if (loggedIn) {
+                        this.loggedIn = true;
+                    }
+                } else {
+                    fetch('home.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            Object.assign(this, data);
+                            const loggedIn = localStorage.getItem('loggedIn');
+                            if (loggedIn) {
+                                this.loggedIn = true;
+                            }
+                            localStorage.setItem('homeData', JSON.stringify(this));
+                        })
+                        .catch(error => console.error('Error fetching data:', error));
+                }
+            },
+
+            saveContent() {
+                this.editMode = false; // Exit edit mode after saving
+            },
+
+            checkLoggedIn() {
+                const loggedIn = localStorage.getItem('loggedIn');
+                if (loggedIn) {
+                    this.loggedIn = true;
+                }
+            }
+        };
+
+        function openPopup(paragraphId) {
+            const popupContainer = document.getElementById("popupContainer");
+            popupContainer.style.display = "block";
+            const paragraphContent = document.getElementById(paragraphId).innerText;
+            document.getElementById("textContent").value = paragraphContent;
+            // Store the ID of the paragraph being edited
+            popupContainer.dataset.paragraphId = paragraphId;
+        }
+
+        function toggleSubscription() {
+            const userId = prompt("Enter user email to toggle subscription status:");
+            const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+            const userIndex = storedUsers.findIndex(user => user.email === userId);
+            if (userIndex === -1) {
+                alert("User not found");
+                return;
+            }
+
+            storedUsers[userIndex].subscribeToNewsletter = !storedUsers[userIndex].subscribeToNewsletter;
+            localStorage.setItem('users', JSON.stringify(storedUsers));
+            alert("Subscription status toggled successfully");
+        }
+
+        function closePopup() {
+            document.getElementById("popupContainer").style.display = "none";
+        }
+
+        function saveText() {
+            const popupContainer = document.getElementById("popupContainer");
+            const paragraphId = popupContainer.dataset.paragraphId;
+            const editedText = document.getElementById("textContent").value;
+            localStorage.setItem(paragraphId, editedText);
+            document.getElementById(paragraphId).innerText = editedText;
+            closePopup();
+        }
+
+        window.onload = function () {
+            const editableParagraphs = document.querySelectorAll('.editable');
+            editableParagraphs.forEach(paragraph => {
+                const paragraphId = paragraph.id;
+                const storedText = localStorage.getItem(paragraphId);
+                if (storedText) {
+                    paragraph.innerText = storedText;
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
